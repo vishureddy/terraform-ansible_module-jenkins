@@ -1,0 +1,6 @@
+project_dir: "./"
+state: present # other states can be => planned, absent
+s3_bucket: sample-vishu135
+key: terraform.tfstate
+aws_region: ap-south-1
+app_env: dev
