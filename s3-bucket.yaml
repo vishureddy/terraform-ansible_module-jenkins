@@ -1,0 +1,15 @@
+---
+- hosts: localhost
+  become: true
+  vars:
+    bucket_name: sample_vishu3452
+    state: present
+  tasks:
+    - name: Install boto3
+      pip:
+        name: boto3
+        state: present
+    - name: Create S3 bucket
+      s3_bucket: 
+        name: "{{ bucket_name }}"
+        state: "{{ state }}"
