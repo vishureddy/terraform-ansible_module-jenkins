@@ -1,12 +1,5 @@
 ---
 - hosts: localhost
-  # vars:
-  #   project_dir: "./"
-  #   state: present #planned, absent
-  #   s3_bucket: sample-vishu135
-  #   key: terraform.tfstate
-  #   aws_region: ap-south-1
-  #   app_env: dev
   vars_files:
     - ./vars/external_vars.yaml
   tasks:
@@ -19,6 +12,9 @@
           bucket: "{{ s3_bucket }}"
           key: "{{ key }}"
           region: "{{ aws_region }}"
+        variables:
+          instance_type: "{{  instance_type }}"
+          ami: "{{ ami }}"
         #state_file: random.tfstate --> It is used only when state has planned value
 
 #ansible-playbook terraform.yaml -e app_env=dev (or) --extra-vars "app_env=dev aws_region=ap-south-1" 
