@@ -3,18 +3,22 @@
   vars_files:
     - ./vars/external_vars.yaml
   tasks:
-    - name: Run Terraform scripts
+    - name: Run Terraform scripts and defining backend configurations
       terraform:
-        project_path: "{{ project_dir }}"
-        state: "{{ state }}"
+        project_path: './'
+        state: "{{resource_state}}"
         force_init: true
         backend_config:
-          bucket: "{{ s3_bucket }}"
-          key: "{{ key }}"
+          bucket: "{{s3_bucket}}"
+          key: "{{state_key}}"
           region: "{{ aws_region }}"
+        #variables_file: dev.tfvars
         variables:
-          instance_type: "{{  instance_type }}"
-          ami: "{{ ami }}"
-        #state_file: random.tfstate --> It is used only when state has planned value
+          # {ami_id: "{{ ami_id_ec2 }}", instance_type: "{{ instance_type_ec2 }}", ec2_count: "{{count}}"} 
+          aws_region: "us-east-1"
+          ami_id: "{{ami_id_ec2}}"
+          instance_type: "{{ instance_type_ec2 }}"
+          ec2_count: "{{count}}"
+        #state_file: .tfstate #--> It is used only when state has planned value
 
 #ansible-playbook terraform.yaml -e app_env=dev (or) --extra-vars "app_env=dev aws_region=ap-south-1" 

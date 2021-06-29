@@ -1,8 +1,8 @@
-project_dir: "./"
-state: present # other states can be => planned, absent
-s3_bucket: sample-vishu135
-key: terraform.tfstate
-aws_region: ap-south-1
-app_env: dev
-ami: ami-0a9d27a9f4f5c0efc
-instance_type: t2.micro
+resource_state: present
+s3_bucket: sample-vishu3452
+state_key: terraform.tfstate
+aws_region: us-east-1
+#app_env: dev
+ami_id_ec2: ami-011c99152163a87ae
+instance_type_ec2: t2.micro
+count: 1
